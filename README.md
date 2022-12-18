@@ -1,8 +1,8 @@
 # **Ho Ho... Merry Christmas!**
 
-Here is the **SANTA CLAUS** from **Google Cloud**.
+## Here is the **SANTA CLAUS** from **Google Cloud**.
 
-**Let's now follow the steps to complete all your video's in a go!**
+### **Let's now follow the steps to complete all your video's in a go!**
 
 **Step 1:** Add an extension [Auto Clicker - Auto Fill] https://chrome.google.com/webstore/detail/iapifmceeokikomajpccajhjpacjmibe.
 
@@ -18,13 +18,21 @@ Here is the **SANTA CLAUS** from **Google Cloud**.
 
 Boom, you have successfully finished all the videos. 🎉
 
-**Let's now follow the steps to complete all your Quiz!**
+## **Let's now follow the steps to complete all your Quiz!**
 
 **Step 1:** Toggle Menu --> More Tools from Browser Menu and head to extensions. Then, make sure to turn developer mode on.
 
-**Step 2:** Open the Quiz window, click on the extension and uplaod the CSV file coresponding to the Quiz Name.
+Download GCSB Quiz Automation Extension
 
-**Step 3:** Click Run, and verify that all the answers are selected. Then, finally click Submit.
+```bash
+  git clone https://github.com/gcp-q/gcsb-quiz-automation.git
+```
+
+**Step 2:** load unpacked extension from above cloned repo.
+
+**Step 3:** Click on the extension to Open the Quiz window and upload the CSV file coresponding to the Quiz Name.
+
+**Step 4:** Click Run, and verify that all the answers are selected. Then, finally click Submit.
 
 Boom, you have successfully finished your Quiz with **100% Score**. 🎉
 
