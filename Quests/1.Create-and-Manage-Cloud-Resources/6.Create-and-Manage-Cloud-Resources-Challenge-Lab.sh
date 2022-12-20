@@ -3,7 +3,7 @@ export PROJECT=$GOOGLE_CLOUD_PROJECT
 curl -o default.sh https://raw.githubusercontent.com/gcp-q/GCCP/main/files/default.sh
 source default.sh
 
-while [ $VERIFY_DETAILS != 'y' ];
+while [[ $VERIFY_DETAILS != 'y' ]];
 do echo " " && 
 read -p "${BOLD}${YELLOW}Enter Instance Name   : ${RESET}" INSTANCE_NAME && 
 read -p "${BOLD}${YELLOW}Enter Region name   : ${RESET}" REGION_NAME && 

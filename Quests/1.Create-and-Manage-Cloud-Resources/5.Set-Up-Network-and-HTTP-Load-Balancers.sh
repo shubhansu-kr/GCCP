@@ -61,30 +61,30 @@ gcloud compute firewall-rules create www-firewall-network-lb \
 gcloud compute instances list
 
 gcloud compute addresses create network-lb-ip-1 \
-    --region us-west4 
+    --region $REGION_NAME
 
 gcloud compute http-health-checks create basic-check
 
 gcloud compute target-pools create www-pool \
-    --region us-west4 --http-health-check basic-check
+    --region $REGION_NAME --http-health-check basic-check
 
 gcloud compute target-pools add-instances www-pool \
-    --instances www1,www2,www3
+    --instances www1,www2,www3 --region $REGION_NAME 
 
 gcloud compute forwarding-rules create www-rule \
-    --region  us-west4 \
+    --region  $REGION_NAME \
     --ports 80 \
     --address network-lb-ip-1 \
     --target-pool www-pool
 
-gcloud compute forwarding-rules describe www-rule --region us-west4
+gcloud compute forwarding-rules describe www-rule --region $REGION_NAME
 
-IPADDRESS=$(gcloud compute forwarding-rules describe www-rule --region us-west4 --format="json" | jq -r .IPAddress)
+IPADDRESS=$(gcloud compute forwarding-rules describe www-rule --region $REGION_NAME --format="json" | jq -r .IPAddress)
 
 echo $IPADDRESS
 
 gcloud compute instance-templates create lb-backend-template \
-   --region=us-west4 \
+   --region=$REGION_NAME \
    --network=default \
    --subnet=default \
    --tags=allow-health-check \
