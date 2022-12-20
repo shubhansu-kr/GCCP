@@ -3,22 +3,6 @@ export PROJECT=$GOOGLE_CLOUD_PROJECT
 curl -o default.sh https://raw.githubusercontent.com/gcp-q/GCCP/main/files/default.sh
 source default.sh
 
-echo " "
-read -p "${BOLD}${YELLOW}Enter Instance Name : ${RESET}" INSTANCE_NAME
-read -p "${BOLD}${YELLOW}Enter Region : ${RESET}" REGION_NAME
-read -p "${BOLD}${YELLOW}Enter Zone : ${RESET}" ZONE
-read -p "${BOLD}${YELLOW}Enter Port : ${RESET}" PORT
-read -p "${BOLD}${YELLOW}Enter Firewall : ${RESET}" FIREWALL
-echo "${BOLD} "
-echo "${YELLOW}Instance Name : ${CYAN}$INSTANCE_NAME  "
-echo "${YELLOW}Region : ${CYAN}$REGION_NAME  "
-echo "${YELLOW}zone : ${CYAN}$ZONE  "
-echo "${YELLOW}Port : ${CYAN}$PORT  "
-echo "${YELLOW}Firewall : ${CYAN}$FIREWALL  "
-echo " "
-
-read -p "${BOLD}${YELLOW}Verify all details are correct? [ y/n ] : ${RESET}" VERIFY_DETAILS
-
 while [ $VERIFY_DETAILS != 'y' ];
 do echo " " && 
 read -p "${BOLD}${YELLOW}Enter Instance Name   : ${RESET}" INSTANCE_NAME && 
@@ -36,7 +20,6 @@ echo " " &&
 read -p "${BOLD}${YELLOW}Verify all details are correct? [ y/n ] : ${RESET}" VERIFY_DETAILS;
 done
 
-
 gcloud config set compute/region $REGION_NAME
 gcloud config set compute/zone $ZONE
 
@@ -52,16 +35,17 @@ gcloud container clusters get-credentials lab-cluster
 kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:2.0
 kubectl expose deployment hello-server --type=LoadBalancer --port $PORT
 
-
-
 gcloud container clusters create nucleus-backend \
           --num-nodes 1 \
           --network nucleus-vpc \
           --region $REGION_NAME
+
 gcloud container clusters get-credentials nucleus-backend \
           --region $REGION_NAME
+
 kubectl create deployment hello-server \
           --image=gcr.io/google-samples/hello-app:2.0
+
 kubectl expose deployment hello-server \
           --type=LoadBalancer \
           --port $PORT
@@ -114,4 +98,3 @@ gcloud compute forwarding-rules describe http-content-rule --global --format='ge
 export IP_ADDRESS=$(gcloud compute forwarding-rules describe http-content-rule --global --format='value(IPAddress)')
 echo $IP_ADDRESS
 while true; do curl -m1 $IP_ADDRESS; done
-

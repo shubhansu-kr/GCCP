@@ -1,6 +1,6 @@
 export PROJECT=$GOOGLE_CLOUD_PROJECT
 
-curl -o default.sh https://raw.githubusercontent.com/user9-21/GCRF/main/files/default.sh
+curl -o default.sh https://raw.githubusercontent.com/gcp-q/GCCP/main/files/default.sh
 source default.sh
 
 echo " "
