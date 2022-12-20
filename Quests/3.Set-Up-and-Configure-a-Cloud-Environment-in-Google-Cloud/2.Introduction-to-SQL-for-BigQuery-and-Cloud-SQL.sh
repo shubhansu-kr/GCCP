@@ -13,7 +13,7 @@ completed "Task 2"
 gcloud sql instances create qwiklabs-demo --database-version=MYSQL_5_7 --region=us-central1 --root-password=password
 completed "Task 3"
 
-echo "${BOLD}${YELLOW}type ${CYAN}password${YELLOW} as password when asked and run this inside SQL instance:
+echo "${BOLD}${YELLOW}type ${RED}password${YELLOW} as password when asked and run this inside SQL instance:
 ${BG_RED}
 CREATE DATABASE bike;
 exit
