@@ -10,6 +10,11 @@
 
 ![image](https://user-images.githubusercontent.com/92918900/208315422-73228449-5605-4996-88e8-795d895efc09.png)
 
+
+```bash
+  curl -o Configurations.json https://raw.githubusercontent.com/gcp-q/GCCP/main/Configurations.json
+```
+
 **Step 3:** Tada, it's the time to experience the **magic**. Toggle on the extension and notice the **Mark as Complete Button**.
 
 **Step4:** Wait for atleast 10 seconds in the same video page, then click the next button on the upper left corner.
