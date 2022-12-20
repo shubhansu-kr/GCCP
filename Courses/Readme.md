@@ -4,7 +4,7 @@
 ## Download quiz files
 
 ```bash
-  git clone https://github.com/gcp-q/gcsb-quiz-automation.git
+  git clone https://github.com/gcp-q/gccp-quiz.git
 ```
 
 or
