@@ -29,7 +29,7 @@ curl -o script.sh https://raw.githubusercontent.com/gcp-q/GCCP/main/Quests/1.Cre
 source script.sh
 ```
 
-#### [1.5.Set Up Network and HTTP Load Balancers  ]
+#### [1.5.Set Up Network and HTTP Load Balancers]
 ```
 curl -o script.sh https://raw.githubusercontent.com/gcp-q/GCCP/main/Quests/1.Create-and-Manage-Cloud-Resources/5.Set-Up-Network-and-HTTP-Load-Balancers.sh
 source script.sh
