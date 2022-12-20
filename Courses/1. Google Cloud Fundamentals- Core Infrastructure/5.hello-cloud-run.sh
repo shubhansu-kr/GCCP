@@ -70,6 +70,7 @@ docker run -d -p 8080:8080 gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld
 
 warning "Preview on port 8080"
 curl localhost:8080
+warning "Press Enter"
 gcloud run deploy --image gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld --allow-unauthenticated --region=$LOCATION
 
 

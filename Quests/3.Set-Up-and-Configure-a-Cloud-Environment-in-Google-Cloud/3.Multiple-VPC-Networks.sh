@@ -5,23 +5,7 @@ export PROJECT=$(gcloud info --format='value(config.project)')
 
 warning "${RESET}${YELLOW}Enter below details carefully from the lab page "
 
-read -p "${BOLD}${YELLOW}Enter Region${RESET}${YELLOW}(managementsubnet-us) : ${RESET}" REGION1
-read -p "${BOLD}${YELLOW}Enter Region${RESET}${YELLOW}(privatesubnet-us)    : ${RESET}" REGION2
-read -p "${BOLD}${YELLOW}Enter Region${RESET}${YELLOW}(privatesubnet-eu)    : ${RESET}" REGION3
-read -p "${BOLD}${YELLOW}Enter Zone${RESET}${YELLOW}(managementnet-us-vm)   : ${RESET}" ZONE1
-read -p "${BOLD}${YELLOW}Enter Zone${RESET}${YELLOW}(privatenet-us-vm)      : ${RESET}" ZONE2
-read -p "${BOLD}${YELLOW}Enter Zone${RESET}${YELLOW}(vm-appliance)          : ${RESET}" ZONE3
-echo " "
-echo "${BOLD}${YELLOW}Region${RESET}${YELLOW}(managementsubnet-us) :${BOLD}${CYAN} $REGION1"
-echo "${BOLD}${YELLOW}Region${RESET}${YELLOW}(privatesubnet-us)    :${BOLD}${CYAN} $REGION2"
-echo "${BOLD}${YELLOW}Region${RESET}${YELLOW}(privatesubnet-eu)    :${BOLD}${CYAN} $REGION3"
-echo "${BOLD}${YELLOW}Zone${RESET}${YELLOW}(managementnet-us-vm)   :${BOLD}${CYAN} $ZONE1"
-echo "${BOLD}${YELLOW}Zone${RESET}${YELLOW}(privatenet-us-vm)      :${BOLD}${CYAN} $ZONE2"
-echo "${BOLD}${YELLOW}Zone${RESET}${YELLOW}(vm-appliance)          :${BOLD}${CYAN} $ZONE3"
-echo " "
-read -p "${BOLD}${YELLOW}Verify all details are correct? [ y/n ] : ${RESET}" VERIFY_DETAILS
-
-while [ $VERIFY_DETAILS != 'y' ];
+while [[ $VERIFY_DETAILS != 'y' ]];
 do echo " " && 
 read -p "${BOLD}${YELLOW}Enter Region${RESET}${YELLOW}(managementsubnet-us) : ${RESET}" REGION1 && 
 read -p "${BOLD}${YELLOW}Enter Region${RESET}${YELLOW}(privatesubnet-us)    : ${RESET}" REGION2 && 
