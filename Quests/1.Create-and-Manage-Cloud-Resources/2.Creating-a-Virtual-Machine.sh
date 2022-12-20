@@ -5,7 +5,7 @@ source default.sh
 
 while [[ $VERIFY_DETAILS != 'y' ]];
 do echo " " && 
-read -p "${BOLD}${YELLOW}Enter Instance name   : ${RESET}" REGION_NAME && 
+read -p "${BOLD}${YELLOW}Enter Region name   : ${RESET}" REGION_NAME && 
 read -p "${BOLD}${YELLOW}Enter zone : ${RESET}" ZONE && 
 echo "${BOLD} " && 
 echo "${YELLOW}zone : ${CYAN}$ZONE  " && 
