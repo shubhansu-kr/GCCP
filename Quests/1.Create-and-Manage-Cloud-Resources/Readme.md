@@ -12,10 +12,18 @@ gcloud services enable dialogflow.googleapis.com
 ```
 export PROJECT=$GOOGLE_CLOUD_PROJECT
 
-curl -o default.sh https://raw.githubusercontent.com/gcp-q/GCCP/main/files/default.sh
+curl -o default.sh https://raw.githubusercontent.com/user9-21/GCRF/main/files/default.sh
 source default.sh
 
-while [[ $VERIFY_DETAILS != 'y' ]];
+echo " "
+read -p "${BOLD}${YELLOW}Enter Zone : ${RESET}" ZONE
+echo "${BOLD} "
+echo "${YELLOW}zone : ${CYAN}$ZONE  "
+echo " "
+
+read -p "${BOLD}${YELLOW}Verify all details are correct? [ y/n ] : ${RESET}" VERIFY_DETAILS
+
+while [ $VERIFY_DETAILS != 'y' ];
 do echo " " && 
 read -p "${BOLD}${YELLOW}Enter Instance name   : ${RESET}" REGION_NAME && 
 read -p "${BOLD}${YELLOW}Enter zone : ${RESET}" ZONE && 
@@ -27,6 +35,12 @@ done
 
 gcloud compute instances create gcelab --project=$PROJECT --zone=$ZONE --machine-type=e2-medium  --maintenance-policy=MIGRATE --create-disk=auto-delete=yes,boot=yes,device-name=gcelab,image=projects/debian-cloud/global/images/debian-10-buster-v20210916,mode=rw,size=10,type=projects/$PROJECT/zones/$ZONE/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
 gcloud compute instances create gcelab2 --machine-type e2-medium --zone $ZONE 
+
+echo "${BOLD}${YELLOW}
+Now, stop gcelab instance and edit the instance to allow http traffic.
+Then, Allow http trafic in gcelab and click save -${CYAN} https://console.cloud.google.com/compute/instancesEdit/zones/us-central1-a/instances/lamp-1-vm?project=$PROJECT_ID 
+Restart the instance.
+
 cat > laststep.sh <<EOF
 
 # in ssh 
