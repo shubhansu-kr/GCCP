@@ -33,6 +33,12 @@ Download GCSB Quiz Automation Extension
   git clone https://github.com/gcp-q/gcsb-quiz-automation.git
 ```
 
+or
+
+```bash
+  curl -o gcsb-quiz-automation.zip https://github.com/gcp-q/gcsb-quiz-automation/archive/refs/heads/main.zip
+```
+
 **Step 2:** load unpacked extension from above cloned repo.
 
 **Step 3:** Click on the extension to Open the Quiz window and upload the CSV file coresponding to the Quiz Name.
