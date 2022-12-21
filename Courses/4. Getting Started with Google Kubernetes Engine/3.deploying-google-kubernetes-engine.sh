@@ -24,7 +24,7 @@ done
 #curl -ks https://`kubectl get svc standard-cluster-1 -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`
 
 
-warning "if error, visit ${CYAN}https://console.cloud.google.com/kubernetes/workload/deploy?project=$GOOGLE_CLOUD_PROJECT ${YELLOW} and DEPLOY Workloads manually"
+warning "if error, visit ${CYAN}https://console.cloud.google.com/kubernetes?project=$GOOGLE_CLOUD_PROJECT ${YELLOW} and do it manually"
 
 completed "Task 3"
 
