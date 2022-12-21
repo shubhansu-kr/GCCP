@@ -4,8 +4,9 @@ source default.sh
 export PROJECT_ID=$(gcloud info --format='value(config.project)')
 echo "${YELLOW}${BOLD}
 
-visit ${CYAN}https://console.cloud.google.com/sql/instances/create;engine=MySQL?project=$PROJECT_ID ${YELLOW} and perform manually"
+visit ${CYAN}https://console.cloud.google.com/sql/instances/create?project=$PROJECT_ID ${YELLOW} and perform manually"
 
+sleep 100
 
 while [[ $STATE != 'RUNNABLE' ]];
 do  echo "State -> $STATE" && sleep 10 && STATE=`gcloud sql instances list --filter="NAME: wordpress-db" --format="value(STATUS)"` ;
