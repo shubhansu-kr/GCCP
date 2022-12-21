@@ -14,15 +14,11 @@ echo " " &&
 read -p "${BOLD}${YELLOW}Verify all details are correct? [ y/n ] : ${RESET}" VERIFY_DETAILS;
 done
 
-gcloud config set compute/region $REGION_NAME
-gcloud config get-value compute/region
-gcloud config set compute/zone $ZONE
-gcloud config get-value compute/zone
-gcloud config get-value project
-gcloud compute project-info describe --project $(gcloud config get-value project)
+gcloud config set compute/zone us-central1-a
+gcloud container clusters create my-cluster
+gcloud container clusters get-credentials my-cluster
+kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
+kubectl expose deployment hello-server --type=LoadBalancer --port 8080
+kubectl get service
 
-export PROJECT_ID=$(gcloud config get-value project)
-export ZONE=$(gcloud config get-value compute/zone)
-echo -e "PROJECT ID: $PROJECT_ID\nZONE: $ZONE"
-
-gcloud compute instances create gcelab2 --machine-type e2-medium --zone $ZONE
+gcloud container clusters delete my-cluster
