@@ -1,7 +1,7 @@
 curl -o default.sh https://raw.githubusercontent.com/gcp-q/GCCP/main/files/default.sh
 source default.sh
 
-gcloud beta container clusters create "standard-cluster-1" --zone "us-central1-a
+gcloud beta container clusters create "standard-cluster-1" --zone "us-central1-a"
 
 completed "Task 1"
 
