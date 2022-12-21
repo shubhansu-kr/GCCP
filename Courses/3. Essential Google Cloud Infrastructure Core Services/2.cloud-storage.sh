@@ -100,7 +100,9 @@ cp setup.html firstlevel/secondlevel
 gsutil rsync -r ./firstlevel gs://$BUCKET_NAME_1/firstlevel
 gsutil ls -r gs://$BUCKET_NAME_1/firstlevel
 
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
 
+gcloud compute instances create crossproject --machine-type=n1-standard-1  --zone=europe-west1-d --create-disk=auto-delete=yes,boot=yes,device-name=crossproject,image=projects/debian-cloud/global/images/debian-10-buster-v20221206,mode=rw,size=10,type=projects/$PROJECT_ID/zones/europe-west1-d/diskTypes/pd-balanced 
 
 FIRSTPROJECT=`gcloud info --format='value(config.project)'`
 SECONDPROJECT=`gcloud projects list  --format='value(project_id)'| grep qwiklabs-gcp | head -1`
@@ -132,7 +134,7 @@ gcloud iam service-accounts create $SA_NAME
 
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/storage.objectAdmin"
+    --role="roles/storage.objectViewer"
 
 gcloud iam service-accounts keys create sa-$SA_NAME.json \
     --iam-account=$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com
@@ -141,35 +143,9 @@ cp sa-$SA_NAME.json credentials.json
 
 completed "Task 6"
 
-
-gcloud config set project $FIRSTPROJECT
-export PROJECT_ID=$(gcloud info --format='value(config.project)')
-
-gcloud compute instances create crossproject --machine-type=n1-standard-1  --zone=europe-west1-d --create-disk=auto-delete=yes,boot=yes,device-name=crossproject,image=projects/debian-cloud/global/images/debian-10-buster-v20221206,mode=rw,size=10,type=projects/$PROJECT_ID/zones/europe-west1-d/diskTypes/pd-balanced 
-
-
-echo $BUCKET_NAME_2
-export FILE_NAME=sample.txt
-echo $FILE_NAME
-
-gsutil ls gs://$BUCKET_NAME_2/
-
-ls
-gcloud auth activate-service-account --key-file credentials.json
-gsutil ls gs://$BUCKET_NAME_2/
-gsutil cat gs://$BUCKET_NAME_2/$FILE_NAME
-gsutil cp credentials.json gs://$BUCKET_NAME_2/
-
-
-gcloud config set project $SECONDPROJECT
-export PROJECT_ID=$(gcloud info --format='value(config.project)')
-
-gcloud iam service-accounts add-iam-policy-binding $SA_NAME@$PROJECT_ID.iam.gserviceaccount.com --member="serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com" --role="roles/storage.objectAdmin"
-
-#gcloud projects add-iam-policy-binding $PROJECT_ID  --member="serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com"  --role="roles/compute.admin"
-
-
-#gcloud iam service-accounts add-iam-policy-binding read-bucket-objects@$PROJECT_ID.iam.gserviceaccount.com  --member="serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com" --role="roles/storage.objectAdmin"
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="serviceAccount:$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/storage.objectAdmin"
 
 completed "Task 7"
 
