@@ -4,6 +4,7 @@ source default.sh
 mkdir appengine-hello
 cd appengine-hello
 gsutil cp gs://cloud-training/archinfra/gae-hello/* .
+dev_appserver.py $(pwd)
 gcloud app deploy app.yaml --quiet
 gcloud app browse
 completed "Task 1"
